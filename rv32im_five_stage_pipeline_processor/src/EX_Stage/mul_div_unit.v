@@ -18,7 +18,7 @@ module mul_div_unit(
     always @(*) begin   
         
         mul_ss = $signed(a) * $signed(b);
-        mul_su = $signed(a) * $signed({32'b0, b});
+        mul_su = $signed(a) * $signed({32'b0, b}); // b is sign extended to 64 bits, but 0 is added so it is always treated as positive no.
         mul_uu = a * b;
         
         case(funct3)
@@ -49,7 +49,7 @@ module mul_div_unit(
             
             3'b110 : begin                   // REM
                 if (b == 32'b0)
-                    result = a;
+                    result = a;      // RISC-V specifies a particular behavior for REM: If the divisor is zero, the remainder is the dividend.
                 else if (a == 32'h80000000 && b == 32'hFFFFFFFF)
                     result = 32'b0;          // RISC-V overflow case
                 else
