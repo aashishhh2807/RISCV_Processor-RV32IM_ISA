@@ -18,7 +18,7 @@ module imm_gen(
         // I type-a
         7'b0010011 : // ADDI,SLTI...
             begin
-                if(instruction[14:12] == 3'b001 || instruction[14:12] == 3'b101)
+                if(instruction[14:12] == 3'b001 || instruction[14:12] == 3'b101) // shift instructions 
                     imm_out = {{27{1'b0}},instruction[24:20]};
                 else
                     imm_out = {{20{instruction[31]}},instruction[31:20]};
