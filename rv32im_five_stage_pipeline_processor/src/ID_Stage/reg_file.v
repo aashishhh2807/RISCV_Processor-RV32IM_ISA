@@ -2,6 +2,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Module Name: reg_file
 // Project Name: rv32im_single_cycle
+// Both read and write operation can be done in same clock cycle 
 //////////////////////////////////////////////////////////////////////////////////
 
 module reg_file(
@@ -21,9 +22,9 @@ module reg_file(
     integer i;
     reg [31:0] register[0:31];
     
-    assign read_data1 = (reg_write && rd != 0 && rd == rs1) ? writeback_data : register[rs1];
+    assign read_data1 = (reg_write && rd != 0 && rd == rs1) ? writeback_data : register[rs1];  //data forwarding done here eg: data writing back at wb stage may be useful for other instr's decode part
 
-    assign read_data2 = (reg_write && rd != 0 && rd == rs2) ? writeback_data : register[rs2];
+    assign read_data2 = (reg_write && rd != 0 && rd == rs2) ? writeback_data : register[rs2];  //data forwarding done here
     
     always @(posedge clk)
     begin
