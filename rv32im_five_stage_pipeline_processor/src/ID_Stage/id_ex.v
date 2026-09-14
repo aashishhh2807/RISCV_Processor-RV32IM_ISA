@@ -15,7 +15,7 @@ module id_ex(
     
     input [31:0] pc_in,
     input [31:0] pc_plus4_in,
-    input [31:0] imm_id,
+    input [31:0] imm_id, //immediate generator output
     input [6:0] opcode_in,
     input [6:0] funct7_in,
     input [2:0] funct3_in,
