@@ -12,13 +12,15 @@ module id_ex(
     
     input stall,
     input flush,
+    
     input [31:0] pc_in,
     input [31:0] pc_plus4_in,
     input [31:0] imm_id,
     input [6:0] opcode_in,
     input [6:0] funct7_in,
     input [2:0] funct3_in,
-    
+
+    //control signals
     input reg_write_in,
     input alu_src_in,
     input mem_read_in,
@@ -28,6 +30,7 @@ module id_ex(
     input [1:0] alu_op_in,
     input [2:0] wb_sel_in,
     input is_mul_div_in,
+    
     input [31:0] auipc_data_in,
     
     input [4:0] rs1_in,
